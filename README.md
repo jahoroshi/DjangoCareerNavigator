@@ -6,6 +6,7 @@
 - **Django Rest Framework (DRF):** 
 - **PostgreSQL:** 
 - **Docker:** 
+- **JWT:** 
 - **Swagger:** документация API 
 
 **Функциональные возможности:**
