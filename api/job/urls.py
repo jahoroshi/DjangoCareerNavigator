@@ -4,7 +4,7 @@ from api.job.views import JobVacViewSet, JobRequiredSkillViewSet
 
 router = DefaultRouter()
 # router.register(r'skills', SkillViewSet, basename='skill')
-router.register(r'openings', JobVacViewSet, basename='jobs')
+router.register(r'opening', JobVacViewSet, basename='jobs')
 router.register(r'requirements', JobRequiredSkillViewSet, basename='requirements')
 
 urlpatterns = [

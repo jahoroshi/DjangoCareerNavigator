@@ -135,7 +135,7 @@ DATABASES = {
         'USER': settings.db.db_user,
         'PASSWORD': settings.db.db_password,
         'HOST': settings.db.db_host,
-        'PORT': settings.db.db_host,
+        'PORT': settings.db.db_port,
     }
 }
 # DATABASES = {
