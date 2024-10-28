@@ -14,6 +14,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 import os
 from dotenv import load_dotenv
 
+from config.app_config import settings
+
 load_dotenv()
 
 from pathlib import Path
@@ -26,12 +28,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-l4_=jcl0x9%f#tn5i)*a9u3=3*l1ij)e*s1hkdys3j_z_#5y+)'
-
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = []
+SECRET_KEY = settings.django.secret_key
+DEBUG = settings.django.debug
+ALLOWED_HOSTS = settings.django.allowed_hosts
 
 
 # Application definition
@@ -79,15 +78,14 @@ SWAGGER_SETTINGS = {
 from datetime import timedelta
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=555),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=settings.jwt.access_token_lifetime),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=settings.jwt.refresh_token_lifetime),
     'ROTATE_REFRESH_TOKENS': False,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': False,
 
-
-    'ALGORITHM': 'HS256',
-    'SIGNING_KEY': 'your-secret-key',
+    'ALGORITHM': settings.jwt.algorithm,
+    'SIGNING_KEY': settings.jwt.signing_key,
     'VERIFYING_KEY': None,
     'AUTH_HEADER_TYPES': ('Bearer',),
     'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
@@ -133,11 +131,11 @@ WSGI_APPLICATION = 'config.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'postgres'),
-        'USER': os.getenv('DB_USER', 'postgres'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'postgres'),
-        'HOST': os.getenv('DB_HOST', 'db'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'NAME': settings.db.db_name,
+        'USER': settings.db.db_user,
+        'PASSWORD': settings.db.db_password,
+        'HOST': settings.db.db_host,
+        'PORT': settings.db.db_host,
     }
 }
 # DATABASES = {
